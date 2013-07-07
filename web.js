@@ -3,13 +3,14 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  var buf = new Buffer(90);
-  fs.readFile('index.html', function(err, buf)) {
+  var buf = new Buffer(300);
+  var fs = require('fs');
+  fs.readFile('index.html', function(err, buf) {
     if (err) throw err;
-    console.log(buf);
-    var json = JSON.stringify(buf);
-    response.send(json);
-  }
+    // console.log(buf);
+    var str = buf.toString('utf-8');
+    response.send(str);
+  });
 });
 
 var port = process.env.PORT || 5000;
